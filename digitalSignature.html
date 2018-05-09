@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="./css/common.css">
+    <script src='js/common.js'></script>
+    <script src='js/jquery-2.0.0.min.js'></script>
+    <title>数字签名</title>
+  </head>
+<body>
+   <header>数字签名<img src="img/u15.png" alt=""></header>
+   <div id="content">
+       <canvas id='canvas'></canvas> 
+       <div class="btnBox">
+       	  <button class="clear">清屏</button>
+       	  <button class='submit'>提交</button>
+       </div>	
+   </div>
+   <div class='popout' style="display:none"></div>	
+   <script>
+   	  $(document).ready(function(){
+   	  	  document.body.addEventListener('touchstart',function(){
+              event.preventDefault();
+           });
+          var oCanvas=document.getElementById('canvas');
+
+              oCanvas.width=300;
+              oCanvas.height=400;
+          var cxt=oCanvas.getContext('2d');
+              cxt.lineWidth=2;
+          var posX=0;
+          var poxY=0;
+          var position=null;
+
+        oCanvas.addEventListener('touchstart',function(){
+            posX=event.changedTouches[0].clientX;
+            poxY=event.changedTouches[0].clientY;
+            cxt.moveTo(posX,poxY);
+          })
+
+         oCanvas.addEventListener('touchmove',function(){
+            posX=event.changedTouches[0].clientX;
+            poxY=event.changedTouches[0].clientY;
+            cxt.lineTo(posX,poxY);
+            cxt.stroke();
+         })
+
+         $('.clear').click(function(){
+         	 oCanvas.height=oCanvas.height
+         });
+
+         $('.submit').click(function(){
+         	 
+         })
+   	  })
+   </script>
+</body>
+</html>
